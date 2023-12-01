@@ -6,7 +6,6 @@ using TMA.ECommerce.Api.Products.Providers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
 builder.Services.AddScoped<IProductsProvider, ProductsProvider>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<ProductsDbContext>(options =>
@@ -14,9 +13,18 @@ builder.Services.AddDbContext<ProductsDbContext>(options =>
     options.UseInMemoryDatabase("Products");
 });
 
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
-app.MapControllers();
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 
 app.Run();
