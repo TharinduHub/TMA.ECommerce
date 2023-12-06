@@ -31,8 +31,9 @@ namespace TMA.ECommerce.Api.Products.Tests
             Assert.Null(products.ErrorMessage);
         }
 
-        [Fact]
-        public async Task GetProductReturnsProductUsingValidId()
+        [Theory]
+        [InlineData(1)]
+        public async Task GetProductReturnsProductUsingValidId(int x)
         {
             var options = new DbContextOptionsBuilder<ProductsDbContext>()
                 .UseInMemoryDatabase(nameof(GetProductReturnsProductUsingValidId))
@@ -46,15 +47,16 @@ namespace TMA.ECommerce.Api.Products.Tests
 
             var productsProvider = new ProductsProvider(dbContext, null, mapper);
 
-            var product = await productsProvider.GetProductAsync(1);
+            var product = await productsProvider.GetProductAsync(x);
             Assert.True(product.IsSuccess);
             Assert.NotNull(product.Product);
-            Assert.True(product.Product.Id == 1);
+            Assert.True(product.Product.Id == x);
             Assert.Null(product.ErrorMessage);
         }
 
-        [Fact]
-        public async Task GetProductReturnsProductUsingInvalidId()
+        [Theory]
+        [InlineData(-1)]
+        public async Task GetProductReturnsProductUsingInvalidId(int id)
         {
             var options = new DbContextOptionsBuilder<ProductsDbContext>()
                 .UseInMemoryDatabase(nameof(GetProductReturnsProductUsingInvalidId))
@@ -68,7 +70,7 @@ namespace TMA.ECommerce.Api.Products.Tests
 
             var productsProvider = new ProductsProvider(dbContext, null, mapper);
 
-            var product = await productsProvider.GetProductAsync(-1);
+            var product = await productsProvider.GetProductAsync(id);
             Assert.False(product.IsSuccess);
             Assert.Null(product.Product);
             Assert.NotNull(product.ErrorMessage);
