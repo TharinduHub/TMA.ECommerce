@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "tma.ecommerce.api.customers": "StartDebugging",
+        "tma.ecommerce.api.orders": "StartDebugging",
+        "tma.ecommerce.api.products": "StartDebugging",
+        "tma.ecommerce.api.search": "StartDebugging"
+      }
+    }
+  }
+}
