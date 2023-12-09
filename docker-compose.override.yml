@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  tma.ecommerce.api.customers:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6002:80"
+
+  tma.ecommerce.api.orders:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6003:80"
+    
+  tma.ecommerce.api.products:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6001:80"
+
+
+  tma.ecommerce.api.search:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Services__Products=http://tma.ecommerce.api.products
+      - Services__Customers=http://tma.ecommerce.api.customers
+      - Services__Orders=http://tma.ecommerce.api.orders
+    ports:
+      - "6004:80"
+
