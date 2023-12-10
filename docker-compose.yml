@@ -5,25 +5,25 @@ services:
     image: ${DOCKER_REGISTRY-}tmaecommerceapicustomers
     build:
       context: .
-      dockerfile: TMA.ECommerce.Api.Customers/Dockerfile
+      dockerfile: TMA.ECommerce.Api.Customers\Dockerfile
 
   tma.ecommerce.api.orders:
     image: ${DOCKER_REGISTRY-}tmaecommerceapiorders
     build:
       context: .
-      dockerfile: TMA.ECommerce.Api.Orders/Dockerfile
+      dockerfile: TMA.ECommerce.Api.Orders\Dockerfile
 
 
   tma.ecommerce.api.products:
     image: ${DOCKER_REGISTRY-}tmaecommerceapiproducts
     build:
       context: .
-      dockerfile: TMA.ECommerce.Api.Products/Dockerfile
+      dockerfile: TMA.ECommerce.Api.Products\Dockerfile
 
 
   tma.ecommerce.api.search:
     image: ${DOCKER_REGISTRY-}tmaecommerceapisearch
     build:
       context: .
-      dockerfile: TMA.ECommerce.Api.Search/Dockerfile
+      dockerfile: TMA.ECommerce.Api.Search\Dockerfile
 
